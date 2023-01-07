@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         // get the current location and save it to a variable
 
         // start the executor service to run every second and find the distance between the current location and the last location
-        scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(updateDistance, 250, 250, TimeUnit.MILLISECONDS);
+        scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(updateDistance, 666, 666, TimeUnit.MILLISECONDS);
     }
 
     private void stopTracking() {
@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         if (scheduledFuture != null) {
             scheduledFuture.cancel(true);
         }
+        // find the distance between the current location and the last location
+        addDistance(11.11f);
     }
 
     Runnable updateDistance = new Runnable() {
@@ -83,15 +85,7 @@ public class MainActivity extends AppCompatActivity {
     private void addDistance(float val) {
         distanceTravelledMeters += val;
         String distanceTravelledString;
-        if (distanceTravelledMeters > 1000) {
-            distanceTravelledString = String.valueOf(distanceTravelledMeters / 1000);
-            units.setText("kilometers");
-        }
-        else if (distanceTravelledMeters > 100) {
-            distanceTravelledString = String.valueOf((int)distanceTravelledMeters);
-        } else {
-            distanceTravelledString = String.valueOf(distanceTravelledMeters);
-        }
+        distanceTravelledString = String.valueOf(distanceTravelledMeters);
         distanceTravelled.setText(distanceTravelledString);
     }
 }
