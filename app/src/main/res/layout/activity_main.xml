@@ -34,10 +34,9 @@
         app:layout_constraintTop_toBottomOf="@+id/distanceTravelled" />
 
     <Button
-        android:id="@+id/startTracking"
+        android:id="@+id/toggleTracking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Tracking"
         android:textAllCaps="false"
         android:letterSpacing="0"
         android:textSize="20dp"
