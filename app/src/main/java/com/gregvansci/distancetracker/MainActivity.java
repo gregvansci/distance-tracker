@@ -3,7 +3,6 @@ package com.gregvansci.distancetracker;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -42,18 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
         toggleTracking.setText("Start Tracking");
 
-        toggleTracking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (tracking) {
-                    toggleTracking.setText("Start Tracking");
-                    tracking = false;
-                    stopTracking();
-                } else {
-                    toggleTracking.setText("Stop Tracking");
-                    tracking = true;
-                    startTracking();
-                }
+        toggleTracking.setOnClickListener(v -> {
+            if (tracking) {
+                toggleTracking.setText("Start Tracking");
+                tracking = false;
+                stopTracking();
+            } else {
+                toggleTracking.setText("Stop Tracking");
+                tracking = true;
+                startTracking();
             }
         });
     }
@@ -72,15 +68,10 @@ public class MainActivity extends AppCompatActivity {
             scheduledFuture.cancel(true);
         }
         // find the distance between the current location and the last location
-        addDistance(11.11f);
+        addDistance(11.12f);
     }
 
-    Runnable updateDistance = new Runnable() {
-        @Override
-        public void run() {
-            addDistance(11.11f);
-        }
-    };
+    Runnable updateDistance = () -> addDistance(11.11f);
 
     private void addDistance(float val) {
         distanceTravelledMeters += val;
